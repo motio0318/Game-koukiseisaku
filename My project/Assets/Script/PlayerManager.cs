@@ -86,6 +86,8 @@ public class PlayerManager : MonoBehaviour
 
     void Jump()
     {
+        rb.velocity = Vector2.zero;
+
         //ƒLƒƒƒ‰‚Ìã‰º‚ğ”½“]
         transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, 1);
         //d—Í‚ğ‹t‚É‚·‚é
@@ -104,6 +106,11 @@ public class PlayerManager : MonoBehaviour
             StartCoroutine(GameOver());
             //Debug.Log("Torap");
         }
+        if (collision.gameObject.tag == "BounceBar")
+        {
+            Jump();
+        }
+
 
     }
     private void OnTriggerStay2D(Collider2D collision)
