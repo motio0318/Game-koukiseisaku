@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     bool isDead;
+    [SerializeField] GameManager gm;
 
     void Start()
     {
@@ -122,6 +123,13 @@ public class PlayerManager : MonoBehaviour
         }
 
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "BounceBar")
+        {
+            Jump();
+        }
+    }
 
     IEnumerator GameOver()
     {
@@ -144,5 +152,6 @@ public class PlayerManager : MonoBehaviour
             count++;
         }
         //リスタート
+        gm.GameOver();
     }
 }
